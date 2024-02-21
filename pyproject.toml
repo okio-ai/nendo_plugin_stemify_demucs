@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nendo-plugin-stemify-demucs"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   "Aaron Abebe <aaron@okio.ai>",
   "Felix Lorenz <felix@okio.ai>",
