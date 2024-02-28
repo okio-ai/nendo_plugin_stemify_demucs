@@ -1,5 +1,4 @@
 """Utility functions for the stemify package."""
-import multiprocessing
 from typing import List
 
 
@@ -18,12 +17,9 @@ def build_command_from_stem_types(
     Returns:
         List[str]: The demucs command.
     """
-    cores = multiprocessing.cpu_count()
 
     run_command = [
         "demucs",
-        "-j",
-        str(cores),
         "-n",
         model,
     ]

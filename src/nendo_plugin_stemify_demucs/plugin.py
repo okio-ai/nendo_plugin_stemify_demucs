@@ -85,7 +85,7 @@ class DemucsStemifier(NendoGeneratePlugin):
         stems: List[NendoTrack] = []
         track_local = track.resource.src
 
-        subprocess.run(
+        subprocess.check_output(
             build_command_from_stem_types(stem_types, model, track_local), shell=False
         )
 
