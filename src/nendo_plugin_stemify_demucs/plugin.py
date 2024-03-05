@@ -57,6 +57,7 @@ class DemucsStemifier(NendoGeneratePlugin):
             track: NendoTrack,
             stem_types: Optional[List[str]] = None,
             model: Optional[str] = None,
+            filter_silent: bool = True,
     ):
         """Stemify a track.
 
@@ -64,6 +65,7 @@ class DemucsStemifier(NendoGeneratePlugin):
             track (NendoTrack): The track to stemify.
             stem_types (List[str], optional): The stem types to generate. Defaults to None.
             model (str, optional): The demucs model to use. Defaults to None.
+            filter_silent (bool, optional): Whether to filter out silent stems. Defaults to True.
 
         Returns:
             List[NendoTrack]: A list of stems.
@@ -106,6 +108,10 @@ class DemucsStemifier(NendoGeneratePlugin):
                 track_type="stem",
                 relationship_type="stem",
             )
+            if filter_silent and stem.is_silent():
+                self.nendo_instance.library.remove_track(stem.id, remove_relationships=True)
+                continue
+
             stems.append(stem)
 
         # clean up original stems generated from demucs
